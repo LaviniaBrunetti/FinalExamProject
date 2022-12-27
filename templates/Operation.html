@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html>
+<header>
+<title>Operation</title>
+</header>
+<body style="background-color: #00061a"> <!-- set overall page background-->
+   
+	<!--Page Header-->
+	<div style="color:white; ; text-align: center; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"> <h1>Human Genome Annotation File</h1> </div> 
+		
+
+	<div>
+					<style>
+						.image-container {
+						position: relative;
+						top: 0;
+						margin: -17px;
+						}
+
+						.image-overlay {
+							position: absolute;
+							top: 50px;
+							right:80px;
+							left:80px;
+							height:600px;
+							align-items: flex-start;
+							justify-content: flex-end;
+							padding: 10px;
+							font-size: 15px;
+							font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+							text-align: left;
+							background-color: aliceblue;
+							color: #00061a;
+							opacity:0.9;
+							overflow: auto;
+
+						}
+
+						
+			
+							::-webkit-scrollbar {
+								width: 10px;
+								background-color: aliceblue;
+									}
+									
+							::-webkit-scrollbar-thumb {
+								background-color: #96a3cd;
+								border-radius: 8px;
+									}
+			
+
+			
+		</style>
+							
+					
+					</style>
+		  
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='banner.png' ) }}"; width="100%";  object-fit: cover>
+                
+				<div class="image-overlay">
+
+
+                    <h1 style="font-size: 50px; margin:-2px">Result</h1>
+					
+
+					<div >
+
+						{% if table_templ %}
+							<table width="100%">
+							{{ result | safe }} 
+							</table>		
+						{% else %}
+							{% for i in result %}
+								{{ i }} <br>
+							{% endfor %}
+						{% endif %}				
+
+
+					</div>
+				</div>
+			</div>
+
+					<div>
+					<a style="background-color: aliceblue; padding:10px; color:#00061a; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" href="/">Back Home </a></p>
+					<a style="background-color: aliceblue; padding:10px; color:#00061a; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"href="Active_Operations">Back to Active Operations </a></p>
+					</div>
+
+					
+					

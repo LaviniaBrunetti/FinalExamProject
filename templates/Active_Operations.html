@@ -1,0 +1,223 @@
+<!DOCTYPE html> 
+<html>
+<header>
+<title>Active_Operations</title>
+</header>
+<body style="background-color: #00061a"> <!-- set overall page background-->
+   
+	<!--Page Header-->
+	<div style="color:white; ; text-align: center; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"> <h1>Human Genome Annotation File</h1> </div> 
+		
+	<!--page menu-->
+	<div>
+
+		<style>
+			.menu {
+			display: flex; 
+			list-style: none;
+			margin-top: -20px;
+			padding: 0;
+			background-color: white;
+			}
+		
+			.menu li {
+			flex: 1;
+			text-align: center;
+			font-size: 20px;
+			}
+		
+			.menu a {
+			display: block;
+			padding: 15px;
+			color: #00061a;
+			font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+			}
+		
+			.menu a:hover {
+			background-color: #152034;
+			color: whitesmoke
+			}
+		</style>
+	  
+	  <ul class="menu">
+		<li><a href="/">Homepage</a></li>
+		<li><a href="Active_Operations">Active Operations</a></li>
+		<li><a href="Documentation">Documentation</a></li>
+		
+	  </ul>
+	
+	</div>
+	<div>
+		<style>
+			.image-container {
+			  position: relative;
+              top: 0;
+			  margin: -17px;
+			}
+
+            .image-overlay {
+				position: absolute;
+				top: 50px;
+                right:80px;
+                left:1000px;
+                align-items: flex-start;
+				justify-content: flex-end;
+				padding: 10px;
+                font-size: 15px;
+			  	font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+			  	text-align: right;
+
+            }
+				
+		  
+
+
+			p {
+				color: aliceblue;
+               
+			}
+		  </style>
+		  
+		  </style>
+		  
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='banner.png' ) }}"; width="100%";  object-fit: cover>
+                <div class="image-overlay">
+
+
+                    <h1 style="font-size: 50px; color:aliceblue">Active Operations</h1>
+                
+            
+                    <p>
+                    Choose an operation from the list below or scroll down to see the description of each operation.
+                    </p>
+
+                    <div> 
+                        <style>
+
+                            ::-webkit-scrollbar {
+                                            width: 10px;
+                                            background-color:#171f30;
+                                                }
+                                                
+                                        ::-webkit-scrollbar-thumb {
+                                            background-color: #00061a;
+                                            border-radius: 8px;
+                                                }
+			
+
+
+
+                            .grid_menu {
+                            display:grid;
+                            padding: 5px;
+                            overflow: auto;
+                            height:400px;
+
+            
+
+                            }
+
+                            .grid_menu li {
+                                text-align: right;
+			                    font-size: 15px;
+                                }
+
+                            .grid_menu a {
+                                color:white;
+                                display: block;
+			                    padding: 15px;
+			                    font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+
+                            }
+
+                            .grid_menu a:hover {
+                                background-color: white;
+                                color: #00061a
+			}
+
+
+
+
+                        </style> 
+
+                                           
+                                <ul class="grid_menu">                           
+                                    {% for i in active_op %}
+                                    <li><a href="Operation?value={{ i }}" > {{ active_op[i] }} </a></li>
+                                    {% endfor %}
+                                </ul>
+                 
+  
+                    </div>
+                    
+                    
+                </div>
+            </div>
+		
+	</div>
+
+    
+	<div>
+		<style>
+			
+			::-webkit-scrollbar {
+ 				 width: 10px;
+  				background-color:#171f30;
+					}
+					
+			::-webkit-scrollbar-thumb {
+				background-color: #00061a;
+				border-radius: 8px;
+					}
+
+			p {
+				font-family:Verdana, Geneva, Tahoma, sans-serif; 
+                font-size: 10pt;
+                color: aliceblue
+
+			}
+		
+
+			h2 {
+				color:aliceblue; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+			}
+
+			
+		</style>
+
+		<h1 style="border:thick double #0f1e3f; color:aliceblue; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> <a ID="report">Operations</a></h1>
+
+		<div style="width: 100%; height:200px; overflow:auto; padding:10px; background-color:#152034" >
+			<p> <b>-Get Columns:</b> Returns the name of the columns present in the Dataset as well as the Data Type for each column. 
+                <br>
+                <br>
+                <b>-Get Unique ID:</b> Returns all the seqID present in the Dataset.
+                <br>
+                <br>
+                <b>-Get Unique Type:</b> Returns all the values for the column "Type"  present in the Dataset.
+                <br>
+                <br>
+                <b>-Get Number of Entries for Type:</b> Retruns the number of entries for each "Type" present in the Dataset
+                <br>
+                <br>
+                <b>-Get Whole Chromosome Dataset:</b> Returns a new Dataset containing only the entries of full chromosomes 
+                <br>
+                <br>
+                <b>-Get Fraction of Fragmented Features:</b> Returns the number of entries of entire chromosomes, the number of entries of fragmented (ID:supercontig) and the number of other features, as well as a list of unique seqIDs for these features and the fraction of fragmented/tot. 
+                <br>
+                <br>
+                <b>-Get Ensembl-Havana Dataset:</b> Returns a new Dataset containing only the entries with Source Ensembl, Havana or Ensembl-Havana. Please notice that only 2000 entries are shown when the result is visualized, as visualizing over 2 million rows would take eccessive runtime.
+                <br>
+                <br>
+                <b>Count Entries in Ensembl-Havana Dataset:</b> Returns the number of entries for each Source.
+                <br>
+                <br>
+                <b>-Get Genes Names:</b> Returns the Name of each gene in the DataFrame as well as the index of such entries in the DataSet 
+
+
+
+
+
+</body>
+</html>
